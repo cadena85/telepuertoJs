@@ -16,7 +16,8 @@ const port = new SerialPort('COM4'); //Connect serial port to port COM3. Because
 const parser = port.pipe(new Readline({delimiter: '\r\n'})); //Read the line only when new line comes.
 parser.on('data', (temp) => { //Read data    
     var today = new Date();
-    console.log((today.getMinutes())+":"+today.getSeconds());
+    console.clear();
+    console.log((today.getHours())+":"+(today.getMinutes())+":"+today.getSeconds());
     io.sockets.emit('temp', {date: today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (today.getHours())+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
 });
 
