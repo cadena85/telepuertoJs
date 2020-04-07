@@ -32,8 +32,8 @@ SerialPort.list((err, ports) => {
     var today = new Date();
     console.clear();
     console.log((today.getHours())+":"+(today.getMinutes())+":"+today.getSeconds());
-    //io.sockets.emit('temp', {date: today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (today.getHours())+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
-    io.sockets.emit('temp', {date: 10+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (11)+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
+    io.sockets.emit('temp', {date: today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (today.getHours())+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
+    //io.sockets.emit('temp', {date: 10+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (11)+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
 });
 
 io.on('connection', (socket) => {
