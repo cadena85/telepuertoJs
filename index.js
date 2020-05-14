@@ -23,22 +23,22 @@ SerialPort.list((err, ports) => {
 
     let { comName } = path;
 
-    const port = new SerialPort(comName, {
-      baudRate: 9600
-    }, console.log);
+    const port = new SerialPort(comName, {baudRate: 9600}, console.log);
 	port.on('data', console.log);
     parser = port.pipe(new Readline({delimiter: '\r\n'})); //Read the line only when new line comes.
     parser.on('data', (temp) => { //Read data    
-    var today = new Date();
-    console.clear();
-    console.log((today.getHours())+":"+(today.getMinutes())+":"+today.getSeconds());
-    io.sockets.emit('temp', {date: today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (today.getHours())+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
-    //io.sockets.emit('temp', {date: 10+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (11)+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
-});
+		console.clear();
+		var today = new Date();        		
+		let hora = (today.getHours())+":"+(today.getMinutes())+":"+today.getSeconds();		   
+		io.sockets.emit('temp', {time: hora, temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.    
+		console.log( hora ); 
+		//io.sockets.emit('temp', {date: today.getDate()+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (today.getHours())+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.    
+		//io.sockets.emit('temp', {date: 10+"/"+(today.getMonth()+1)+"/"+today.getFullYear(), time: (11)+":"+(today.getMinutes()), temp:temp}); //emit the datd i.e. {date, time, temp} to all the connected clients.
+	});
 
-io.on('connection', (socket) => {
-    console.log("Someone connected."); //show a log as a new client connects.
-})
+	io.on('connection', (socket) => {
+		console.log("Someone connected."); //show a log as a new client connects.
+	})
   });
 });
 
