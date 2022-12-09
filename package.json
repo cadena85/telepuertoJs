@@ -9,7 +9,7 @@
   "author": "Priyansh Rastogi",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "serialport": "^6.2.2"
   },
   "devDependencies": {
